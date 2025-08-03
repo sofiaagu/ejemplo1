@@ -5,10 +5,11 @@ using System.Xml.Linq;
 
 namespace PackagePersona
 {
+    [Serializable]
     public class Estudiante : Persona
     {
-        private string codeE;
-        private string carrera;
+        [SerializeField] private string codeE;
+        [SerializeField] private string carrera;
 
         public Estudiante()
         {
@@ -18,7 +19,7 @@ namespace PackagePersona
         base(nameP, mailP, dirP)
         {
 
-            this.codeE = codeE;
+            this.codeE = codigo;
             this.carrera = carrera;
         }
 
