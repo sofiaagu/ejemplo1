@@ -13,10 +13,12 @@ public class usaEstudiante : MonoBehaviour
         listaE.Add(e1);
         listaE.Add(e2);
 
-        foreach (Estudiante e in listaE)
-        {
-            Debug.Log(e.NameP + " " + e.Carrera);
-        }
+      for (int i = 0; i < listaE.Count; i++)
+{
+    Estudiante e = listaE[i];
+    Debug.Log(e.NameP + " " + e.Carrera);
+}
+
 
         Utilidades.GuardarListaEstudiantes(listaE);
     }
