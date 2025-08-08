@@ -23,7 +23,7 @@ public class usaPunto2D : MonoBehaviour
             Debug.Log("X: " + listaP[i].X + " Y: " + listaP[i].Y);
         }
 
-        Utilidades.GuardarListaPuntos(listaP);
+        
     }
 
     public void Update()

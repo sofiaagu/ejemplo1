@@ -46,15 +46,50 @@ public class Utilidades
     }
 
 
-    public bool SaveDataStudent(List<Estudiante> listaE)
+    public static bool SaveDataStudent(List<Estudiante> listaE)
     {
-        bool resultado = false;
-        string jsonString = JsonUtility.ToJson(listaE, true);
-        Debug.Log("lista" + jsonString);
         EstudianteListWrapper wrapper = new EstudianteListWrapper();
         wrapper.listaE = listaE;
+        bool resultado = false;
+        string jsonString = JsonUtility.ToJson(wrapper, true);
+        Debug.Log("lista" + jsonString);
+        
         string path = Path.Combine(Application.streamingAssetsPath, "estudiantes.json");
+         File.WriteAllText(path, jsonString);
         return resultado;
     }
+
+ [System.Serializable]
+    public class Punto2D
+    {
+        public float x;
+        public float y;
+
+        public Punto2D(Vector2 pos)
+        {
+            x = pos.x;
+            y = pos.y;
+        }
+    }
+
+    [System.Serializable]
+    private class ListaPuntos
+    {
+        public List<Punto2D> puntos = new List<Punto2D>();
+    }
+
+    private static ListaPuntos listaCoordenadas = new ListaPuntos();
+
+    public static void GuardarCoordenadaEnJson(Vector2 coordenada)
+    {
+        listaCoordenadas.puntos.Add(new Punto2D(coordenada));
+
+        string json = JsonUtility.ToJson(listaCoordenadas, true);
+        string ruta = Path.Combine(Application.streamingAssetsPath, "coordenadas.json");
+        File.WriteAllText(ruta, json);
+
+        Debug.Log("Coordenada guardada en: " + json);
+    }
+
 
 }

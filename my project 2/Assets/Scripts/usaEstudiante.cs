@@ -37,7 +37,8 @@ public class usaEstudiante : MonoBehaviour
         string codeStudent1 = codeStudent.text;
         string carreraStudent1 = carreraStudent.text;
 
-        Estudiante e1 = new Estudiante(nameStudent1, mailStudent1, dirStudent1, codeStudent1, carreraStudent1);
+        Estudiante e1 = new Estudiante(codeStudent1, carreraStudent1, nameStudent1, mailStudent1, dirStudent1);
+
         listaE.Add(e1);
     }
 
@@ -49,7 +50,7 @@ public class usaEstudiante : MonoBehaviour
         Debug.Log(e.NameP + " " + e.Carrera);
     }
 
-        Utilidades.SaveDataEstudent(listaE);
+        Utilidades.SaveDataStudent(listaE);
     }
 }
 
