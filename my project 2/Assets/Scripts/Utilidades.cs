@@ -59,7 +59,7 @@ public class Utilidades
         return resultado;
     }
 
- [System.Serializable]
+[System.Serializable]
     public class Punto2D
     {
         public float x;
@@ -80,16 +80,17 @@ public class Utilidades
 
     private static ListaPuntos listaCoordenadas = new ListaPuntos();
 
-    public static void GuardarCoordenadaEnJson(Vector2 coordenada)
+    public static void AgregarCoordenada(Vector2 coordenada)
     {
         listaCoordenadas.puntos.Add(new Punto2D(coordenada));
+    }
 
+    public static void GuardarCoordenadasEnJson()
+    {
         string json = JsonUtility.ToJson(listaCoordenadas, true);
         string ruta = Path.Combine(Application.streamingAssetsPath, "coordenadas.json");
         File.WriteAllText(ruta, json);
 
-        Debug.Log("ultima coordenada guardada en: " + json);
+        Debug.Log("Coordenadas guardadas en: " + json);
     }
-
-
 }

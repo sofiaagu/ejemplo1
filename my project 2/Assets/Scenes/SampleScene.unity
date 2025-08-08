@@ -5003,7 +5003,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 473401481}
         m_TargetAssemblyTypeName: MouseTrackerUI, Assembly-CSharp
-        m_MethodName: GuardarCoordenada
+        m_MethodName: GuardarCoordenadas
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

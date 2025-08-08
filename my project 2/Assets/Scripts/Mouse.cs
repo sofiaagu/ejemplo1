@@ -1,10 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MouseTrackerUI : MonoBehaviour
 {
-    public RectTransform panelRectTransform; // Asigna el panel desde el Inspector
-    private Vector2 ultimaCoordenada;
+    public RectTransform panelRectTransform; 
 
     void Update()
     {
@@ -18,15 +16,17 @@ public class MouseTrackerUI : MonoBehaviour
         {
             if (panelRectTransform.rect.Contains(localMousePosition))
             {
-                ultimaCoordenada = localMousePosition;
-                Debug.Log("Mouse sobre panel: " + ultimaCoordenada);
+              
+                Debug.Log("Mouse sobre panel: " + localMousePosition);
+
+               
+                Utilidades.AgregarCoordenada(localMousePosition);
             }
         }
     }
 
-    // Método que se llama desde el botón
-    public void GuardarCoordenada()
+    public void GuardarCoordenadas()
     {
-        Utilidades.GuardarCoordenadaEnJson(ultimaCoordenada);
+        Utilidades.GuardarCoordenadasEnJson();
     }
 }
