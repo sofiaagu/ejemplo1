@@ -88,7 +88,7 @@ public class Utilidades
         string ruta = Path.Combine(Application.streamingAssetsPath, "coordenadas.json");
         File.WriteAllText(ruta, json);
 
-        Debug.Log("Coordenada guardada en: " + json);
+        Debug.Log("ultima coordenada guardada en: " + json);
     }
 
 
