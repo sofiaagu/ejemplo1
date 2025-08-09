@@ -2,41 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using PackagePersona;
-//using Puntos;
-//using System;
+using Puntos;
 
-//public class Utilidades
-//{
-//    [Serializable]
-//    private class ContenedorEstudiantes
-//    {
-//        public List<Estudiante> estudiantes;
-//    }
-
-//    [Serializable]
-//    private class ContenedorPuntos
-//    {
-//        public List<Punto2D> puntos;
-//    }
-
-//    public static void GuardarListaEstudiantes(List<Estudiante> lista, string nombreArchivo = "estudiantes.json")
-//    {
-//        ContenedorEstudiantes contenedor = new ContenedorEstudiantes { estudiantes = lista };
-//        string json = JsonUtility.ToJson(contenedor, true);
-//        string ruta = Path.Combine(Application.persistentDataPath, nombreArchivo);
-//        File.WriteAllText(ruta, json);
-//        Debug.Log("Estudiantes guardados en: " + ruta);
-//    }
-
-//    public static void GuardarListaPuntos(List<Punto2D> lista, string nombreArchivo = "puntos2D.json")
-//    {
-//        ContenedorPuntos contenedor = new ContenedorPuntos { puntos = lista };
-//        string json = JsonUtility.ToJson(contenedor, true);
-//        string ruta = Path.Combine(Application.persistentDataPath, nombreArchivo);
-//        File.WriteAllText(ruta, json);
-//        Debug.Log("Puntos 2D guardados en: " + ruta);
-//    }
-//}
 
 public class Utilidades
 {
@@ -45,6 +12,10 @@ public class Utilidades
         public List<Estudiante> listaE;
     }
 
+ public class puntos2d
+    {
+        public List<Puntos> list;
+    }
 
     public static bool SaveDataStudent(List<Estudiante> listaE)
     {
@@ -59,38 +30,19 @@ public class Utilidades
         return resultado;
     }
 
-[System.Serializable]
-    public class Punto2D
+   public static void SaveDataPuntos(List<Punto2D> puntos)
     {
-        public float x;
-        public float y;
+  
+        ListaPuntos lista = new ListaPuntos(puntos);
 
-        public Punto2D(Vector2 pos)
-        {
-            x = pos.x;
-            y = pos.y;
-        }
-    }
+        string json = JsonUtility.ToJson(lista, true);
 
-    [System.Serializable]
-    private class ListaPuntos
-    {
-        public List<Punto2D> puntos = new List<Punto2D>();
-    }
+        string ruta = Path.Combine(Application.persistentDataPath, "coordenadas.json");
 
-    private static ListaPuntos listaCoordenadas = new ListaPuntos();
-
-    public static void AgregarCoordenada(Vector2 coordenada)
-    {
-        listaCoordenadas.puntos.Add(new Punto2D(coordenada));
-    }
-
-    public static void GuardarCoordenadasEnJson()
-    {
-        string json = JsonUtility.ToJson(listaCoordenadas, true);
-        string ruta = Path.Combine(Application.streamingAssetsPath, "coordenadas.json");
+     
         File.WriteAllText(ruta, json);
 
-        Debug.Log("Coordenadas guardadas en: " + json);
+        Debug.Log("Archivo JSON guardado en: " + ruta);
+        Debug.Log("Contenido:\n" + json);
     }
 }

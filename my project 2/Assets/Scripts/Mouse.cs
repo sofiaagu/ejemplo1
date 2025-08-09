@@ -1,32 +1,28 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using System.Collections.Generic;
+using Puntos;
 
 public class MouseTrackerUI : MonoBehaviour
 {
-    public RectTransform panelRectTransform; 
-
+    public RectTransform panelRojo; // Asigna el panel desde el Inspector
+List<Punto2D> puntos = new List<Punto2D>();
     void Update()
     {
-        Vector2 localMousePosition;
-        if (panelRectTransform != null &&
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                panelRectTransform,
-                Input.mousePosition,
-                null,
-                out localMousePosition))
+       
+        vector2 localMousePos;
+        if(RectTransformUtility.RectangleContainsScreenPoint(panelRojo, Input.mousePosition))
         {
-            if (panelRectTransform.rect.Contains(localMousePosition))
-            {
-              
-                Debug.Log("Mouse sobre panel: " + localMousePosition);
-
-               
-                Utilidades.AgregarCoordenada(localMousePosition);
-            }
+RectTransformUtility.ScreenPointToLocalPointInRectangle(panelRojo,Input.mousePosition,null,out localMousePos);
+Punto2D punto2D = new Punto2D(localMousePos.x,localMousePos.y);
+puntos.Add(punto2D);
         }
     }
 
-    public void GuardarCoordenadas()
+    
+    public void SaveDataPuntos()
     {
-        Utilidades.GuardarCoordenadasEnJson();
+        Utilidades.SaveDataPuntos(puntos);
     }
 }
