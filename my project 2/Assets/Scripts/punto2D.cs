@@ -1,25 +1,24 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 
-namespace Puntos
+[Serializable]
+public class Punto2D
 {
-    [Serializable]
-    public class Punto2D
+    [SerializeField]
+    public float x;
+    [SerializeField]
+    public float y;
+
+    public Punto2D()
     {
-        [SerializeField] private double x;
-        [SerializeField] private double y;
-        
-        public Punto2D()
-        {
-        }
-        
-        public Punto2D(double x, double y)
-        {
-            this.x = x;
-            this.y = y;
-        }
-        
-        public double X { get => x; set => x = value; }
-        public double Y { get => y; set => y = value; }
     }
+
+    public Punto2D(float x, float y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
+    public float X { get => x; set => x = value; }
+    public float Y { get => y; set => y = value; }
 }

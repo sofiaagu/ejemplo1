@@ -1,48 +1,130 @@
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 using PackagePersona;
-using Puntos;
+using System.IO;
 
-
-public class Utilidades
+public class Utilidades 
 {
-    public class EstudianteListWrapper
-    {
-        public List<Estudiante> listaE;
-    }
-
- public class puntos2d
-    {
-        public List<Puntos> list;
-    }
-
     public static bool SaveDataStudent(List<Estudiante> listaE)
     {
-        EstudianteListWrapper wrapper = new EstudianteListWrapper();
-        wrapper.listaE = listaE;
-        bool resultado = false;
-        string jsonString = JsonUtility.ToJson(wrapper, true);
-        Debug.Log("lista" + jsonString);
-        
-        string path = Path.Combine(Application.streamingAssetsPath, "estudiantes.json");
-         File.WriteAllText(path, jsonString);
-        return resultado;
+        try
+        {
+            string jsonString = JsonUtility.ToJson(new EstudianteListWrapper { estudiantes = listaE }, true);
+            string folderPath = Application.streamingAssetsPath;
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            string filePath = Path.Combine(folderPath, "datosEstudiante.json");
+            File.WriteAllText(filePath, jsonString);
+
+            Debug.Log(" Archivo JSON guardado correctamente en: " + filePath);
+            return true;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Error al guardar archivo JSON: " + ex.Message);
+            return false;
+        }
     }
 
-   public static void SaveDataPuntos(List<Punto2D> puntos)
+    public static bool SaveDataPuntos(List<Punto2D> listaP)
     {
-  
-        ListaPuntos lista = new ListaPuntos(puntos);
+        try
+        {
+            string jsonString = JsonUtility.ToJson(new PuntosListWrapper { puntos = listaP }, true);
+            string folderPath = Application.streamingAssetsPath;
 
-        string json = JsonUtility.ToJson(lista, true);
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
 
-        string ruta = Path.Combine(Application.persistentDataPath, "coordenadas.json");
+            string filePath = Path.Combine(folderPath, "datosPuntos.json");
+            File.WriteAllText(filePath, jsonString);
 
-     
-        File.WriteAllText(ruta, json);
-
-        Debug.Log("Archivo JSON guardado en: " + ruta);
-        Debug.Log("Contenido:\n" + json);
+            Debug.Log(" Archivo JSON guardado correctamente en: " + filePath);
+            return true;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Error al guardar archivo JSON: " + ex.Message);
+            return false;
+        }
     }
+
+    public static bool SaveIngenieria(List<Estudiante> listaE)
+{
+    try
+    {
+        // Filtrar los estudiantes de Ingeniería (ignorar mayúsculas/minúsculas)
+        List<Estudiante> sublista = listaE.FindAll(
+            e => !string.IsNullOrEmpty(e.NameCarrera) && 
+                 e.NameCarrera.ToLower().Contains("ingenieria")
+        );
+
+        string jsonString = JsonUtility.ToJson(new EstudianteListWrapper { estudiantes = sublista }, true);
+        string folderPath = Application.streamingAssetsPath;
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        string filePath = Path.Combine(folderPath, "Estudiantes_Ingenieria.json");
+        File.WriteAllText(filePath, jsonString);
+
+        Debug.Log(" Sublista de Ingeniería guardada correctamente en: " + filePath +
+                  " con " + sublista.Count + " estudiantes.");
+        return true;
+    }
+    catch (System.Exception ex)
+    {
+        Debug.LogError("Error al guardar sublista de Ingeniería: " + ex.Message);
+        return false;
+    }
+}
+public static bool SaveCarreras(List<Estudiante> listaE)
+{
+    try
+    {
+      
+        List<Estudiante> otros = listaE.FindAll( e => !string.IsNullOrEmpty(e.NameCarrera) && 
+         !e.NameCarrera.ToLower().Contains("ingenieria"));
+
+        string jsonString = JsonUtility.ToJson(new EstudianteListWrapper { estudiantes = otros }, true);
+        string folderPath = Application.streamingAssetsPath;
+
+        if (!Directory.Exists(folderPath))
+        {
+            Directory.CreateDirectory(folderPath);
+        }
+
+        string filePath = Path.Combine(folderPath, "OtrasCarreras.json");
+        File.WriteAllText(filePath, jsonString);
+
+        Debug.Log(" Sublista de otras carreras guardada correctamente en: " + filePath );
+        return true;
+    }
+    catch (System.Exception ex)
+    {
+        Debug.LogError("Error al guardar sublista de Ingeniería: " + ex.Message);
+        return false;
+    }
+}
+}
+
+[Serializable]
+public class EstudianteListWrapper
+{
+    public List<Estudiante> estudiantes;
+}
+
+[Serializable]
+public class PuntosListWrapper
+{
+    public List<Punto2D> puntos;
 }
