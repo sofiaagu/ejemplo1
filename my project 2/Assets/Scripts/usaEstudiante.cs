@@ -92,7 +92,7 @@ public void AgregarAlInicio()
     listaE.Insert(0, e1);
 
     Debug.Log("Estudiante " + e1.NameP + " agregado al inicio de la lista");
-}
+}   
 
 public void AgregarEnPosicion()
 {
@@ -133,16 +133,8 @@ public void AgregarEnPosicion()
         }
 
         Utilidades.SaveDataStudent(listaE);
+        Utilidades.SaveIngenieria(listaE);
+        Utilidades.SaveCarreras(listaE);
     }
-
-    public void GuardarIngenieria()
-{
-    Utilidades.SaveIngenieria(listaE);
-}
-
-public void GuardarCarreras()
-{
-    Utilidades.SaveCarreras(listaE);
-}
 
 }

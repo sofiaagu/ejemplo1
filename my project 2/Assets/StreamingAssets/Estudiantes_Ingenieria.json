@@ -1,6 +1,13 @@
 {
     "estudiantes": [
         {
+            "nameP": "SOFIA",
+            "mailP": "CRA",
+            "dirP": "JBWÑE",
+            "codeE": "3333",
+            "nameCarrera": "ingenieria social"
+        },
+        {
             "nameP": "David Castro",
             "mailP": "dacastro@uao.edu.co",
             "dirP": "calle45",
@@ -13,6 +20,13 @@
             "dirP": "carrera12#34-56",
             "codeE": "21479",
             "nameCarrera": "Ingenieria Industrial"
+        },
+        {
+            "nameP": "SOFIA",
+            "mailP": "CRA",
+            "dirP": "JBWÑE",
+            "codeE": "3333",
+            "nameCarrera": "ingenieria social"
         },
         {
             "nameP": "María Fernández",
@@ -90,6 +104,20 @@
             "dirP": "carrera16#56-78",
             "codeE": "21496",
             "nameCarrera": "Ingenieria de Sistemas"
+        },
+        {
+            "nameP": "SOFIA",
+            "mailP": "CRA",
+            "dirP": "JBWÑE",
+            "codeE": "3333",
+            "nameCarrera": "ingenieria social"
+        },
+        {
+            "nameP": "SOFIA",
+            "mailP": "CRA",
+            "dirP": "JBWÑE",
+            "codeE": "3333",
+            "nameCarrera": "ingenieria social"
         }
     ]
 }

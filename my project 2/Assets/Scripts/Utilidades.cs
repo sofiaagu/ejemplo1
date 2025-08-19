@@ -60,7 +60,6 @@ public class Utilidades
 {
     try
     {
-        // Filtrar los estudiantes de Ingeniería (ignorar mayúsculas/minúsculas)
         List<Estudiante> sublista = listaE.FindAll(
             e => !string.IsNullOrEmpty(e.NameCarrera) && 
                  e.NameCarrera.ToLower().Contains("ingenieria")
